@@ -30,6 +30,26 @@ func listHackathons() {
 	fmt.Println(string(respBody))
 }
 
+type struct Hackathon {
+	Title string `json:"title`
+	Url string `json:"url"`
+	StartDate string `json:"startDate"`
+	EndDate string `json:"endDate"`
+	Year int `json:"year"`
+	City string `json:"city"`
+	Host string `json:"host"`
+	Length int `json:"length"`
+	Size int `json:"size"`
+	Travel bool `json:"travel"`
+	Price int `json:"price"`
+	HighSchoolers bool `json:"highSchoolers"`
+	Cost string `json:"s=cost"`
+	FaceBookURL string 	`json:"facebookURL"`
+	twitterURL string 	`json:"twitterURL"`
+	GooglePlusURL string 	`json:"googlePlusUrl"`
+	Notes string `json:"notes"`
+}
+
 var hackathonCmd = &cobra.Command{
 	Use: "hackathons",
 	Short: "Lists all the hackathons available",
