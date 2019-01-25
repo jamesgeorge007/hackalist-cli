@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"encoding/json"
 	"net/http"
 	"io/ioutil"
 	"log"
@@ -12,25 +13,7 @@ import (
 
 const API_URL = "http://www.hackalist.org/api/1.0/2019/01.json"
 
-func listHackathons() {
-
-	resp, err := http.Get(API_URL)
-
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-
-	respBody, err:= ioutil.ReadAll(resp.Body)
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println(string(respBody))
-}
-
-type struct Hackathon {
+type Hackathon struct {
 	Title string `json:"title`
 	Url string `json:"url"`
 	StartDate string `json:"startDate"`
@@ -48,6 +31,27 @@ type struct Hackathon {
 	twitterURL string 	`json:"twitterURL"`
 	GooglePlusURL string 	`json:"googlePlusUrl"`
 	Notes string `json:"notes"`
+}
+
+func listHackathons() {
+
+	resp, err := http.Get(API_URL)
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	respBody, err:= ioutil.ReadAll(resp.Body)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var responseJSON Hackathon
+	json.Unmarshal(respBody, &responseJSON)
+
+	fmt.Println(string(respBody))
 }
 
 var hackathonCmd = &cobra.Command{
