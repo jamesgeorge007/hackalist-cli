@@ -40,12 +40,12 @@ type Hackathon struct {
 
 func listHackathons() {
 
-	spin := spinner.New(spinner.CharSets[12], 100*time.Millisecond) // Build our new spinner
+	spin := spinner.New(spinner.CharSets[14], 100*time.Millisecond) 
 	utils.ClearScreen()
-	color.Cyan(" Fetching Data")
+	utils.ShowBanner()
+	color.Cyan(" \nFetching Data")
 	spin.Start()
 	time.Sleep(2 * time.Second)
-
 	resp, err := http.Get(API_URL)
 
 	if err != nil {
