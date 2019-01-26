@@ -31,7 +31,7 @@ type Hackathon struct {
 	Travel bool `json:"travel"`
 	Price int `json:"price"`
 	HighSchoolers bool `json:"highSchoolers"`
-	Cost string `json:"s=cost"`
+	Cost string `json:"cost"`
 	FaceBookURL string 	`json:"facebookURL"`
 	twitterURL string 	`json:"twitterURL"`
 	GooglePlusURL string 	`json:"googlePlusUrl"`
@@ -61,10 +61,12 @@ func listHackathons() {
 
 	spin.Stop()
 
-	var responseJSON Hackathon
+	var responseJSON []Hackathon
 	json.Unmarshal(respBody, &responseJSON)
 
-	fmt.Println(string(respBody))
+	for i := 0; i<len(responseJSON); i++ {
+		fmt.Println(responseJSON[i])
+	}
 }
 
 var hackathonCmd = &cobra.Command{
