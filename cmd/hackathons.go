@@ -61,10 +61,14 @@ func listHackathons() {
 
 	spin.Stop()
 
-	var responseJSON []Hackathon
-	json.Unmarshal(respBody, &responseJSON)
+	var responseJSON Hackathon
+	err = json.Unmarshal(respBody, &responseJSON)
 
-	fmt.Println(len(responseJSON))
+	if err != nil {
+		log.Println(err)
+	}
+
+	fmt.Println(responseJSON.Year)
 }
 
 var hackathonCmd = &cobra.Command{
