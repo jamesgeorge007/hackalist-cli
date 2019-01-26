@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"io/ioutil"
+	"strconv"
 
 	"github.com/fatih/color"
 	"github.com/briandowns/spinner"
@@ -16,7 +17,10 @@ import (
 	"hackalist-cli/utils"
 )
 
-const API_URL = "http://www.hackalist.org/api/1.0/2019/01.json"
+
+var year, month, day = time.Now().Date()
+
+const rootApiURL = "http://www.hackalist.org/api/1.0/2019"
 
 type Hackathons struct {
 	January []struct {
@@ -42,10 +46,20 @@ type Hackathons struct {
 
 func listHackathons() {
 
-	spin := spinner.New(spinner.CharSets[14], 100*time.Millisecond) 
+	var computedMonth string
+	currentMonth := strconv.Itoa(int(month))
+	if int(month) < 10 {
+		computedMonth = "0" +  currentMonth
+	}else {
+		computedMonth = currentMonth
+	} 
+	API_URL := fmt.Sprintf("%s/%s.json", rootApiURL, computedMonth)
+
+	spin := spinner.New(spinner.CharSets[14], 100*time.Millisecond)
 	
 	utils.ClearScreen()
 	utils.ShowBanner()
+
 	color.Cyan(" \nFetching Data")
 	spin.Start()
 	time.Sleep(2 * time.Second)
@@ -66,7 +80,6 @@ func listHackathons() {
 	var hackathon Hackathons
 
 	if resp.StatusCode == http.StatusOK {
-		// read response body
 		body, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
 			log.Fatal(err)
@@ -79,8 +92,8 @@ func listHackathons() {
 
 		spin.Stop()
 
-		for index, value := range hackathon.January {
-			fmt.Println(index, value)
+		for index, events := range hackathon.January {
+			fmt.Println(index, " => ", events.Title, "\n website: \n", events.URL)
 		}
 	}
 }
