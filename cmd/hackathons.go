@@ -21,8 +21,9 @@ var year, month, day = time.Now().Date()
 
 const rootApiURL = "http://www.hackalist.org/api/1.0/2019"
 
-type Hackathons map[string][]struct {
-	// Hackathons is a hash which maps names of months to arrays of events
+type Hackathons map[Month][]Event // Hackathons is a hash which maps names of months to arrays of events
+type Month string
+type Event struct {
 	Title         string `json:"title"`
 	URL           string `json:"url"`
 	StartDate     string `json:"startDate"`
