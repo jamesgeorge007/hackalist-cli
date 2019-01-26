@@ -1,6 +1,6 @@
 package main 
 
-import "hackalist/cmd"
+import "hackalist-cli/cmd"
 
 func main() {
 	cmd.Execute()
