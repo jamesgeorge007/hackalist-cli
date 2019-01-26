@@ -19,7 +19,7 @@ import (
 const API_URL = "http://www.hackalist.org/api/1.0/2019/01.json"
 
 type Hackathons struct {
-	Months []struct {
+	January []struct {
 		Title         string `json:"title"`
 		URL           string `json:"url"`
 		StartDate     string `json:"startDate"`
@@ -79,7 +79,9 @@ func listHackathons() {
 
 		spin.Stop()
 
-		fmt.Println(len(hackathon.Months))
+		for index, value := range hackathon.January {
+			fmt.Println(index, value)
+		}
 	}
 }
 
