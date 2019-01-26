@@ -19,23 +19,23 @@ import (
 const API_URL = "http://www.hackalist.org/api/1.0/2019/01.json"
 
 type Hackathon struct {
-	Title string `json:"title`
-	Url string `json:"url"`
-	StartDate string `json:"startDate"`
-	EndDate string `json:"endDate"`
-	Year int `json:"year"`
-	City string `json:"city"`
-	Host string `json:"host"`
-	Length int `json:"length"`
-	Size int `json:"size"`
-	Travel bool `json:"travel"`
-	Price int `json:"price"`
-	HighSchoolers bool `json:"highSchoolers"`
-	Cost string `json:"cost"`
-	FaceBookURL string 	`json:"facebookURL"`
-	twitterURL string 	`json:"twitterURL"`
-	GooglePlusURL string 	`json:"googlePlusUrl"`
-	Notes string `json:"notes"`
+	Title         string `json:"title"`
+	URL           string `json:"url"`
+	StartDate     string `json:"startDate"`
+	EndDate       string `json:"endDate"`
+	Year          string `json:"year"`
+	City          string `json:"city"`
+	Host          string `json:"host"`
+	Length        string `json:"length"`
+	Size          string `json:"size"`
+	Travel        string `json:"travel"`
+	Prize         string `json:"prize"`
+	HighSchoolers string `json:"highSchoolers"`
+	Cost          string `json:"cost"`
+	FacebookURL   string `json:"facebookURL"`
+	TwitterURL    string `json:"twitterURL"`
+	GooglePlusURL string `json:"googlePlusURL"`
+	Notes         string `json:"notes"`
 }
 
 func listHackathons() {
@@ -64,9 +64,7 @@ func listHackathons() {
 	var responseJSON []Hackathon
 	json.Unmarshal(respBody, &responseJSON)
 
-	for i := 0; i<len(responseJSON); i++ {
-		fmt.Println(responseJSON[i])
-	}
+	fmt.Println(len(responseJSON))
 }
 
 var hackathonCmd = &cobra.Command{
