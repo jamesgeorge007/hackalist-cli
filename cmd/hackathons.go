@@ -2,12 +2,10 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 	"encoding/json"
 	"net/http"
-	"io/ioutil"
-	"log"
 	"time"
+	"log"
 
 	"github.com/fatih/color"
 	"github.com/briandowns/spinner"
@@ -46,29 +44,23 @@ func listHackathons() {
 	color.Cyan(" \nFetching Data")
 	spin.Start()
 	time.Sleep(2 * time.Second)
-	resp, err := http.Get(API_URL)
 
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
+	var httpClient = &http.Client{Timeout: 10 * time.Second}
+	
+	resp, err := httpClient.Get(API_URL)
 
-	respBody, err:= ioutil.ReadAll(resp.Body)
+    if err != nil {
+        log.Fatal(err)
+    }
 
-	if err != nil {
-		log.Fatal(err)
-	}
+    defer resp.Body.Close()
+
+    var hackathons Hackathon
+	data := json.NewDecoder(resp.Body).Decode(&hackathons)
 
 	spin.Stop()
 
-	var responseJSON Hackathon
-	err = json.Unmarshal(respBody, &responseJSON)
-
-	if err != nil {
-		log.Println(err)
-	}
-
-	fmt.Println(responseJSON.Year)
+	fmt.Println(data)
 }
 
 var hackathonCmd = &cobra.Command{
