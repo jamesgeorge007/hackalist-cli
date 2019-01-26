@@ -7,8 +7,13 @@ import (
 	"net/http"
 	"io/ioutil"
 	"log"
+	"time"
 
+	"github.com/fatih/color"
+	"github.com/briandowns/spinner"
 	"github.com/spf13/cobra"
+
+	"hackalist-cli/utils"
 )
 
 const API_URL = "http://www.hackalist.org/api/1.0/2019/01.json"
@@ -35,6 +40,12 @@ type Hackathon struct {
 
 func listHackathons() {
 
+	spin := spinner.New(spinner.CharSets[12], 100*time.Millisecond) // Build our new spinner
+	utils.ClearScreen()
+	color.Cyan(" Fetching Data")
+	spin.Start()
+	time.Sleep(2 * time.Second)
+
 	resp, err := http.Get(API_URL)
 
 	if err != nil {
@@ -47,6 +58,8 @@ func listHackathons() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	spin.Stop()
 
 	var responseJSON Hackathon
 	json.Unmarshal(respBody, &responseJSON)
