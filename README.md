@@ -1,2 +1,3 @@
-# hackalist
-Get to know the hackathons near you from the terminal
+# Hackalist-CLI
+
+Get to know about the upcoming hackathons without leaving your terminal
