@@ -2,12 +2,12 @@
 
 
 [[projects]]
-  digest = "1:2fd83c8c2b1ff53fd7c4376a63c3a2f31e002e9296df9d7f150b07da524de88d"
+  digest = "1:315e13c1712c2e09a84d1f3230ffe3a74998253b278492e3f73fa90bb5532eb3"
   name = "github.com/briandowns/spinner"
   packages = ["."]
   pruneopts = "UT"
-  revision = "dd69c579ff204842e8962816987f838e2c2c18d8"
-  version = "1.4"
+  revision = "998b3556fb3f2385738c2f1f4cf74d83c9eb438a"
+  version = "1.5"
 
 [[projects]]
   branch = "master"
@@ -80,7 +80,7 @@
     "github.com/briandowns/spinner",
     "github.com/common-nighthawk/go-figure",
     "github.com/fatih/color",
-    "github.com/spf13/cobra"
+    "github.com/spf13/cobra",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
