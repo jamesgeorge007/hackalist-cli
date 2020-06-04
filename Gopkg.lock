@@ -11,11 +11,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:083caed86277ee2b48cc2dd692321170ac5cbbca3d08cf2259a8b82c0cb0dee7"
+  digest = "1:d4b31a95e20a62ae4d0b4d96a6e34ea6c9c41b9f466f7df861f3cc5ab7b67ac0"
   name = "github.com/common-nighthawk/go-figure"
   packages = ["."]
   pruneopts = "UT"
-  revision = "67e0ed34491ae997c83c5aa2a1cae2cfd4b4ac41"
+  revision = "c37800f1341bcf05ef5a73ad0608a48c62b0e23a"
 
 [[projects]]
   digest = "1:bde2a1ce1de28312f165a88926c12f4acd19dc4d7da96a445dfa5a29eae07a93"
